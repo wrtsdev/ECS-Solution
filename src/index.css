@@ -1,1 +1,183 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* CAST phase colors. Always pair with a text label and icon; never use color alone. */
+:root {
+  --background: #ffffff;
+  --foreground: #14202b;
+  --muted: #f3f5f7;
+  --muted-foreground: #4a5866;
+  --border: #d5dbe1;
+  --ring: #1d4ed8;
+
+  --characterize: #1f3a5f; /* navy */
+  --act: #b4643c; /* copper */
+  --steer: #0f766e; /* teal */
+  --track: #a16207; /* gold */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background: #0e151c;
+    --foreground: #e8edf2;
+    --muted: #17212b;
+    --muted-foreground: #a3afbb;
+    --border: #2a3744;
+    --ring: #60a5fa;
+
+    --characterize: #7aa2d6;
+    --act: #e39a73;
+    --steer: #4fc3b6;
+    --track: #e0b44a;
+  }
+}
+
+:root[data-theme="dark"] {
+  --background: #0e151c;
+  --foreground: #e8edf2;
+  --muted: #17212b;
+  --muted-foreground: #a3afbb;
+  --border: #2a3744;
+  --ring: #60a5fa;
+
+  --characterize: #7aa2d6;
+  --act: #e39a73;
+  --steer: #4fc3b6;
+  --track: #e0b44a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-characterize: var(--characterize);
+  --color-act: var(--act);
+  --color-steer: var(--steer);
+  --color-track: var(--track);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
+}
+
+/* ------------------------------------------------------------------
+   QTR Foundry brand logo
+   Assets (in /public, served from the site root):
+     /qtr-foundry-logo.webp      930x540  full-size
+     /qtr-foundry-logo-sm.webp   465x270  header size
+     /qtr-foundry-logo.jpg       930x540  fallback
+     /favicon.png                256x256  emblem only
+   The logo is an opaque image on pure black (#000), so it must sit on a
+   black surface (.brand-panel) or, on dark themes, be blended into the
+   page background (screen blend turns the black into transparent).
+   ------------------------------------------------------------------ */
+:root {
+  --brand-panel-bg: #000000;
+  --brand-blend: normal;
+  --logo-width: 11rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --brand-panel-bg: transparent;
+    --brand-blend: screen;
+  }
+}
+
+:root[data-theme="dark"] {
+  --brand-panel-bg: transparent;
+  --brand-blend: screen;
+}
+
+.brand-panel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  background: var(--brand-panel-bg);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.brand-logo {
+  display: block;
+  width: var(--logo-width);
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 930 / 540;
+  object-fit: contain;
+  mix-blend-mode: var(--brand-blend);
+}
+
+.brand-logo--sm {
+  --logo-width: 8rem;
+}
+
+.brand-logo--lg {
+  --logo-width: min(28rem, 100%);
+}
+
+/* Full-bleed black hero/login strip for the logo. */
+.brand-hero {
+  display: grid;
+  place-items: center;
+  padding: clamp(1.5rem, 4vw, 3rem) 1rem;
+  background: #000000;
+  color: #f4e9d0;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+@media print {
+  .brand-logo {
+    mix-blend-mode: normal;
+  }
+  .brand-panel {
+    background: #000000;
+  }
+}
 
