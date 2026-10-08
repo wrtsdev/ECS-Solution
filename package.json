@@ -62,9 +62,9 @@
     "tinypool": "^2.1.2",
     "vinext": "0.x.x",
     "zod": "^4.0.0"
-     "sharp": "0.35.5"
+     "sharp": "0.35.5",
     "esbuild": "0.25.12",
-  "image-size": "2.0.3"
+  "image-size": "2.0.3",
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.0",
