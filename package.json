@@ -45,12 +45,7 @@
     "verify:integrity": "npm ls --production && npm audit --production",
     "check": "npm run format:check && npm run lint && npm run typecheck && npm run test",
     "verify": "npm run security:check && npm run build && npm run e2e"
-  },
-  "overrides": {
-    "sharp": "0.35.5"
-    "esbuild": "0.25.12",
-  "image-size": "2.0.3"
-  },
+
   "dependencies": {
     "@base-ui/react": "^1.0.0",
     "class-variance-authority": "^0.7.1",
@@ -67,6 +62,9 @@
     "tinypool": "^2.1.2",
     "vinext": "0.x.x",
     "zod": "^4.0.0"
+     "sharp": "0.35.5"
+    "esbuild": "0.25.12",
+  "image-size": "2.0.3"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.0",
