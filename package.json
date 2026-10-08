@@ -14,6 +14,7 @@
     "build": "vinext build",
     "start": "vinext start",
     "preview": "vinext preview",
+    "predeploy": "node scripts/pre-deploy.js",
     "deploy": "vinext deploy",
 
     "format": "prettier --write .",
@@ -35,8 +36,18 @@
     "db:seed": "tsx scripts/seed.ts",
     "db:reset:local": "tsx scripts/reset-local.ts",
 
-    "check": "npm run format:check && npm run lint && npm run typecheck && npm run test && npm run ls esbuild",
-    "verify": "npm run check && npm run build && npm run e2e"
+    "audit": "npm audit --production --audit-level=moderate",
+    "audit:all": "npm audit",
+    "audit:fix": "npm audit fix --production",
+    "verify:sharp": "node scripts/verify-sharp-integrity.js",
+    "postinstall": "npm run verify:sharp",
+    "security:check": "npm run audit && npm run typecheck && npm run lint",
+    "verify:integrity": "npm ls --production && npm audit --production",
+    "check": "npm run format:check && npm run lint && npm run typecheck && npm run test",
+    "verify": "npm run security:check && npm run build && npm run e2e"
+  },
+  "overrides": {
+    "sharp": "0.35.5"
   },
   "dependencies": {
     "@base-ui/react": "^1.0.0",
@@ -49,7 +60,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "recharts": "^3.0.0",
-    "sharp": "^0.35.5",
+    "sharp": "0.35.5",
     "tailwind-merge": "^3.0.0",
     "tinypool": "^2.1.2",
     "vinext": "0.x.x",
